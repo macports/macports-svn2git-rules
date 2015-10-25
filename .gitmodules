@@ -1,0 +1,3 @@
+[submodule "svn2git"]
+	path = svn2git
+	url = git@github.com:neverpanic/svn2git.git
