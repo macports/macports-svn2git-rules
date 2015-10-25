@@ -1,0 +1,412 @@
+# vim:ft=conf
+
+# MacPorts base repository
+create repository macports/base
+end repository
+
+# MacPorts portfiles
+create repository macports/ports
+end repository
+
+# The trunk/doc folder from the current SVN tree, that is not being used
+# anymore
+create repository macports/doc-old
+end repository
+
+# The trunk/doc-new folder which we use to generate the guide
+create repository macports/guide
+end repository
+
+# Repository for the code running on the website
+create repository macports/www
+end repository
+
+# Contributed parts
+create repository macports/contrib
+end repository
+
+# User repositories
+create repository macports/users
+end repository
+
+# Distfiles; it probably doesn't make sense to keep this around, but let's
+# export it nonetheless
+create repository macports/distfiles
+end repository
+
+# Downloads; we should probably just move that to the distfiles server and drop
+# the repository.
+create repository macports/downloads
+end repository
+
+# Repository for Pallet, because some GSoCs worked on it and it doesn't make
+# sense to put it as a branch to macports-base.
+create repository macports/pallet
+end repository
+
+create repository leftovers
+end repository
+
+#########
+# TRUNK #
+#########
+# Convert /trunk/* folders into their appropriate target repository
+match /trunk/base/
+	repository macports/base
+	branch master
+end match
+match /trunk/doc/
+	repository macports/doc-old
+	branch master
+end match
+match /trunk/doc-new/
+	repository macports/guide
+	branch master
+end match
+match /trunk/dports/
+	repository macports/ports
+	branch master
+end match
+match /trunk/[^/]+
+	action recurse
+end match
+
+############
+# BRANCHES #
+############
+# There should be one entry for each branch that we're going to keep here.
+
+# Drop branches/APPLE
+match /branches/APPLE/
+end match
+
+# bigmove has base/ and dports/, create appropriate branches in their repos.
+# Put the README file into base.
+match /branches/(bigmove)/(base|README)/
+	repository macports/base
+	branch \1
+end match
+match /branches/(bigmove)/dports/
+	repository macports/ports
+	branch \1
+end match
+
+# gsoc08-framework only has only Pallet-specific code. Put that into a separate
+# repo (along with the rest of the Pallet code from contrib/)
+match /branches/(gsoc08-framework)/
+	repository macports/pallet
+	branch \1
+end match
+
+# gsoc09-gui has a base/ folder and some GUI stuff; let's branch the base off
+# macports-base and put the rest into Pallet's repository.
+match /branches/(gsoc09-gui)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(gsoc09-gui)/
+	repository macports/pallet
+	branch \1
+end match
+
+# gsoc10-configfiles has
+#  - base/, which we'll branch off macports-base,
+#  - code-submit/, which we'll ignore
+#  - tools/, which is helpful, so we'll put it into macports-base (which will
+#    work because base doesn't have a tools subfolder)
+match /branches/(gsoc10-configfiles)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(gsoc10-configfiles)/tools/
+	repository macports/base
+	branch \1
+	prefix tools/
+end match
+
+# gsoc10-gui contains Pallet code, move it to pallet's repo
+match /branches/(gsoc10-gui)/
+	repository macports/pallet
+	branch \1
+end match
+
+# mpwa now lives in contrib, let's move gsoc10-mpwa there as well
+match /branches/(gsoc10-mpwa)/
+	repository macports/contrib
+	branch \1
+end match
+
+# gsoc11-statistics has changes to base and a server component. Let's keep the
+# server + docs in a contrib branch for now.
+match /branches/(gsoc11-statistics)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(gsoc11-statistics)/docs/
+	repository macports/contrib
+	branch \1
+	prefix stats-server/docs/
+end match
+match /branches/(gsoc11-statistics)/
+	repository macports/contrib
+	branch \1
+end match
+
+# gsoc13-tests is a direct branch off base/
+match /branches/(gsoc13-tests)/
+	repository macports/base
+	branch \1
+end match
+
+# gsoc14-cleanup is a direct branch off base/
+match /branches/(gsoc14-cleanup)/
+	repository macports/base
+	branch \1
+end match
+
+# gsoc14-interactive has a base folder and some aux files; we're just going to
+# put the aux files into a subfolder
+match /branches/(gsoc14-interactive)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(gsoc14-interactive)/
+	repository macports/base
+	branch \1
+	prefix gsoc14-interactive/
+end match
+
+# gsoc15-pallet contains pallet code and should thus go to its repo
+match /branches/(gsoc15-pallet)/
+	repository macports/pallet
+	branch \1
+end match
+
+# gsoc15-portfile has a copy of base and all sorts of additional folders and
+# files that we'll move into a subfolder of base 
+match /branches/(gsoc15-portfile)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(gsoc15-portfile)/
+	repository macports/base
+	branch \1
+	prefix gsoc15-portfile/
+end match
+
+# jkh-destrootification is a complete branch off trunk/. Let's map the
+# approriate subfolders. Additionally, there's a Makefile and a couple of
+# READMEs, which however, are very generic and thus not really worth keeping.
+match /branches/(jkh-destrootification)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(jkh-destrootification)/doc/
+	repository macports/doc-old
+	branch \1
+end match
+match /branches/(jkh-destrootification)/dports/
+	repository macports/ports
+	branch \1
+end match
+match /branches/(jkh-destrootification)/www/
+	repository macports/www
+	branch \1
+end match
+
+# kevin-target-api is a complete branch off trunk/. Let's map the approriate
+# subfolders. Additionally, there's a Makefile and a couple of READMEs, which
+# however, are very generic and thus not really worth keeping.
+match /branches/(kevin-target-api)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(kevin-target-api)/doc/
+	repository macports/doc-old
+	branch \1
+end match
+match /branches/(kevin-target-api)/dports/
+	repository macports/ports
+	branch \1
+end match
+match /branches/(kevin-target-api)/www/
+	repository macports/www
+	branch \1
+end match
+
+# larryv-mpvim-rewrite is branching off contrib's mpvim
+match /branches/(larryv-mpvim-rewrite)/
+	repository macports/contrib
+	branch \1
+	prefix mpvim/
+end match
+
+# larryv-subversion-subports is a branch off dports
+match /branches/(larryv-subversion-subports)/dports/
+	repository macports/ports
+	branch \1
+end match
+
+# launchdproto branches off base and has a couple of README files for
+# darwinports in different lanuguages. We're going to drop the READMEs for the
+# lack of a better place to put them.
+match /branches/(launchdproto)/base/
+	repository macports/base
+	branch \1
+end match
+
+# mld-qt-481 is a complete branch off trunk/. Let's map the approriate
+# subfolders. Additionally, there's a Makefile and a .gitignore, which however,
+# are very generic and thus not really worth keeping.
+match /branches/(mld-qt-481)/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(mld-qt-481)/doc/
+	repository macports/doc-old
+	branch \1
+end match
+match /branches/(mld-qt-481)/doc-new/
+	repository macports/guide
+	branch \1
+end match
+match /branches/(mld-qt-481)/dports/
+	repository macports/ports
+	branch \1
+end match
+match /branches/(mld-qt-481)/www/
+	repository macports/www
+	branch \1
+end match
+
+# qt4-mac-move-to-libexec is (unfortunately) a copy of trunk/. Let's map the
+# approriate subfolders inside trunk/ back where they belong.
+match /branches/(qt4-mac-move-to-libexec)/trunk/base/
+	repository macports/base
+	branch \1
+end match
+match /branches/(qt4-mac-move-to-libexec)/trunk/doc/
+	repository macports/doc-old
+	branch \1
+end match
+match /branches/(qt4-mac-move-to-libexec)/trunk/doc-new/
+	repository macports/guide
+	branch \1
+end match
+match /branches/(qt4-mac-move-to-libexec)/trunk/dports/
+	repository macports/ports
+	branch \1
+end match
+match /branches/(qt4-mac-move-to-libexec)/trunk/www/
+	repository macports/www
+	branch \1
+end match
+
+# The branches
+#  - dp2mp-move
+#  - dp_light-olegb
+#  - gsoc08-privileges
+#  - gsoc09-logging
+#  - gsoc11-post-destroot
+#  - gsoc15-dependency
+#  - images-and-archives
+#  - jberry-dropprivs
+#  - jberry-preview13
+#  - landonf-1_0
+#  - release_[^/]+
+#  - rshaw-archivemode
+#  - ssen-platform-[12]
+#  - universal-sanity
+#  - wbb4-versionfoobage-1
+#  - wbb4_versionfoobage_base
+#  - xterm-titles
+# all have nothing but a base folder
+match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base|xterm-titles)/base/
+	repository macports/base
+	branch \1
+end match
+
+match /branches/[^/]+
+	action recurse
+end match
+match /branches/[^/]+/[^/]+
+	action recurse
+end match
+
+
+###########
+# CONTRIB #
+###########
+# Most of contrib/ stays as it is. Only Pallet-related code will move to
+# a separate repository for easier branch tracking across the GSoC branches
+match /contrib/(MacPorts_Framework|Pallet)/
+	repository macports/pallet
+	branch master
+	prefix \1/
+end match
+
+match /contrib/
+	repository macports/contrib
+	branch master
+end match
+
+#########
+# USERS #
+#########
+# Keep users as-is. We don't want to fiddle with users' stuff
+match /users/
+	repository macports/users
+	branch master
+end match
+
+#########################
+# DISTFILES & DOWNLOADS #
+#########################
+match /distfiles/
+	repository macports/distfiles
+	branch master
+end match
+
+match /downloads/
+	repository macports/downloads
+	branch master
+end match
+
+########
+# TAGS #
+########
+match /tags/([^/]+)/base/
+	repository macports/base
+	branch refs/tags/\1
+	annotated true
+end match
+match /tags/([^/]+)/doc/
+	repository macports/doc-old
+	branch refs/tags/\1
+	annotated true
+end match
+match /tags/([^/]+)/doc-new/
+	repository macports/guide
+	branch refs/tags/\1
+	annotated true
+end match
+match /tags/([^/]+)/dports/
+	repository macports/ports
+	branch refs/tags/\1
+	annotated true
+end match
+match /tags/([^/]+)/www/
+	repository macports/www
+	branch refs/tags/\1
+	annotated true
+end match
+
+match /tags/[^/]+
+	action recurse
+end match
+
+# Catchall for any leftovers so we can easily check what they are
+match /
+	repository leftovers
+	branch master
+end match
