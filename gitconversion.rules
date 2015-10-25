@@ -67,6 +67,10 @@ match /trunk/dports/
 	repository macports/ports
 	branch master
 end match
+match /trunk/www/
+	repository macports/www
+	branch master
+end match
 match /trunk/[^/]+
 	action recurse
 end match
