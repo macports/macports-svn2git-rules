@@ -16,9 +16,11 @@ current_dir=$(cd "$(dirname "$0")" && pwd)
 
 ##
 # Build svn2git if necessary.
-svn2git_repo=$current_dir/svn2git
-svn2git=$svn2git_repo/build/svn-all-fast-export
+svn2git=$(command -v svn-all-fast-export 2>&1)
 if [ ! -f "$svn2git" ]; then
+	svn2git_repo=$current_dir/svn2git
+	svn2git=$svn2git_repo/build/svn-all-fast-export
+
 	# We need qmake, MacPorts has a weird path by default
 	qmake=$(command -v qmake 2>&1)
 	if [ -z "$qmake" ] && [ -f "/opt/local/libexec/qt4/bin/qmake" ]; then
