@@ -2,6 +2,16 @@
 
 set -euo pipefail
 
+##
+# Handle option parsing. This accepts a single flag -f, denoting whether the
+# incremental import should be continued, or the output directory should be
+# deleted, starting from scratch.
+force=0
+if [ $# -gt 1 ] && [ "$1" == "-f" ]; then
+	force=1
+	echo "Force option set, removing existing work directory." >&2
+fi
+
 current_dir=$(cd "$(dirname "$0")" && pwd)
 
 ##
@@ -44,14 +54,31 @@ outdir=$PWD/git
 identity_map=$current_dir/gitconversion.authors
 rules=$current_dir/gitconversion.rules
 
-rm -rf "$outdir"
+if [ "$force" = 1 ] || [ ! -f "$outdir/lastrev" ]; then
+	rm -rf "$outdir"
+fi
 mkdir -p "$outdir"
 cd "$outdir"
+
+# Find resume version, if available
+resume_from=$(cat lastrev || echo 0)
+resume_from=$(( resume_from + 1 ))
+max_rev=$(svnlook youngest "$indir")
+
+# Do the export
 "$svn2git" \
 	--identity-map="$identity_map" \
 	--rules="$rules" \
+	--add-metadata \
+	--resume-from "$resume_from" \
+	--max-rev "$max_rev" \
 	--stats \
-	"$indir"
+	"$indir" || (rm -f "lastrev"; exit 1)
+# ... but make sure to delete the lastrev file if something failed, because
+# that means we need to start over
+
+# Store the last imported revision, if successful
+echo "$max_rev" > "lastrev"
 
 # Compress output repositories
 for repo in "$outdir/macports/"*; do
