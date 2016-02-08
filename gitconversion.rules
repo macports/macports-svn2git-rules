@@ -8,11 +8,6 @@ end repository
 create repository macports/ports
 end repository
 
-# The trunk/doc folder from the current SVN tree, that is not being used
-# anymore
-create repository macports/doc-old
-end repository
-
 # The trunk/doc-new folder which we use to generate the guide
 create repository macports/guide
 end repository
@@ -56,8 +51,8 @@ match /trunk/base/
 	branch master
 end match
 match /trunk/doc/
-	repository macports/doc-old
-	branch master
+	repository macports/guide
+	branch doc-old
 end match
 match /trunk/doc-new/
 	repository macports/guide
@@ -206,8 +201,8 @@ match /branches/(jkh-destrootification)/base/
 	branch \1
 end match
 match /branches/(jkh-destrootification)/doc/
-	repository macports/doc-old
-	branch \1
+	repository macports/guide
+	branch doc-old-\1
 end match
 match /branches/(jkh-destrootification)/dports/
 	repository macports/ports
@@ -226,8 +221,8 @@ match /branches/(kevin-target-api)/base/
 	branch \1
 end match
 match /branches/(kevin-target-api)/doc/
-	repository macports/doc-old
-	branch \1
+	repository macports/guide
+	branch doc-old-\1
 end match
 match /branches/(kevin-target-api)/dports/
 	repository macports/ports
@@ -267,8 +262,8 @@ match /branches/(mld-qt-481)/base/
 	branch \1
 end match
 match /branches/(mld-qt-481)/doc/
-	repository macports/doc-old
-	branch \1
+	repository macports/guide
+	branch doc-old-\1
 end match
 match /branches/(mld-qt-481)/doc-new/
 	repository macports/guide
@@ -290,8 +285,8 @@ match /branches/(qt4-mac-move-to-libexec)/trunk/base/
 	branch \1
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/doc/
-	repository macports/doc-old
-	branch \1
+	repository macports/guide
+	branch doc-old-\1
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/doc-new/
 	repository macports/guide
@@ -385,8 +380,8 @@ match /tags/([^/]+)/base/
 	annotated true
 end match
 match /tags/([^/]+)/doc/
-	repository macports/doc-old
-	branch refs/tags/\1
+	repository macports/guide
+	branch refs/tags/doc-old-\1
 	annotated true
 end match
 match /tags/([^/]+)/doc-new/
