@@ -4,9 +4,12 @@ set -euo pipefail
 
 current_dir=$(cd "$(dirname "$0")" && pwd)
 
+##
+# Build svn2git if necessary.
 svn2git_repo=$current_dir/svn2git
 svn2git=$svn2git_repo/build/svn-all-fast-export
 if [ ! -f "$svn2git" ]; then
+	# We need qmake, MacPorts has a weird path by default
 	qmake=$(which qmake || true)
 	if [ -z "$qmake" ] && [ -f "/opt/local/libexec/qt4/bin/qmake" ]; then
 		qmake="/opt/local/libexec/qt4/bin/qmake"
@@ -16,6 +19,7 @@ if [ ! -f "$svn2git" ]; then
 		exit 1
 	fi
 
+	# Build svn2git
 	pushd "$svn2git_repo/" >/dev/null
 	mkdir -p "build"
 	cd "build"
@@ -47,7 +51,7 @@ cd "$outdir"
 	--stats \
 	"$indir"
 
-# Compressing output repositories
+# Compress output repositories
 for repo in "$outdir/macports/"*; do
 	printf "Compressing repository in %s\n" "$repo"
 	du -sh "$repo"
