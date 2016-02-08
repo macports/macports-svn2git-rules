@@ -28,7 +28,7 @@ if [ ! -f "$svn2git" ]; then
 		SVN_LIBDIR = /opt/local/lib
 		APR_INCLUDE = /opt/local/include/apr-1
 	EOF
-	"$qmake" CONFIG-=app_bundle QMAKE_LFLAGS+=-L/opt/local/lib ..
+	"$qmake" CONFIG-=app_bundle QMAKE_LFLAGS+="-L/opt/local/lib -stdlib=libc++" QMAKE_CXXFLAGS+="-stdlib=libc++" ..
 	make
 	popd >/dev/null
 fi
