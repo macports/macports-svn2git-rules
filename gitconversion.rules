@@ -20,10 +20,6 @@ end repository
 create repository macports/contrib
 end repository
 
-# User repositories
-create repository macports/users
-end repository
-
 # Repository for Pallet, because some GSoCs worked on it and it doesn't make
 # sense to put it as a branch to macports-base.
 create repository macports/pallet
@@ -354,10 +350,14 @@ end match
 #########
 # USERS #
 #########
-# Keep users as-is. We don't want to fiddle with users' stuff
-match /users/
-	repository macports/users
+# Split user folders into separate repos
+match /users/([^/]+)/
+	repository macports/users/\1
 	branch master
+end match
+
+match /users
+	action recurse
 end match
 
 #########################
