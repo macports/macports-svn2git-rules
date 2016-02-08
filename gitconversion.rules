@@ -24,16 +24,6 @@ end repository
 create repository macports/users
 end repository
 
-# Distfiles; it probably doesn't make sense to keep this around, but let's
-# export it nonetheless
-create repository macports/distfiles
-end repository
-
-# Downloads; we should probably just move that to the distfiles server and drop
-# the repository.
-create repository macports/downloads
-end repository
-
 # Repository for Pallet, because some GSoCs worked on it and it doesn't make
 # sense to put it as a branch to macports-base.
 create repository macports/pallet
@@ -362,13 +352,15 @@ end match
 # DISTFILES & DOWNLOADS #
 #########################
 match /distfiles/
-	repository macports/distfiles
-	branch master
+	## drop distfiles
+	#repository macports/distfiles
+	#branch master
 end match
 
 match /downloads/
-	repository macports/downloads
-	branch master
+	## drop downloads
+	#repository macports/downloads
+	#branch master
 end match
 
 ########
