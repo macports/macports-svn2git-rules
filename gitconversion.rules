@@ -151,6 +151,10 @@ end match
 match /branches/(gsoc14-cleanup)/
 	repository macports/base
 	branch \1
+	min revision 123738
+	# The branch was deleted and re-created based on top of a svn copy of macports trunk
+	# See https://trac.macports.org/log/branches/gsoc14-cleanup?action=stop_on_copy&mode=stop_on_copy&rev=123736&stop_rev=&limit=100
+	# and https://trac.macports.org/log/branches/gsoc14-cleanup?action=stop_on_copy&mode=stop_on_copy&rev=124046&stop_rev=&limit=100
 end match
 
 # gsoc14-interactive has a base folder and some aux files; we're just going to
@@ -308,11 +312,19 @@ end match
 #  - universal-sanity
 #  - wbb4-versionfoobage-1
 #  - wbb4_versionfoobage_base
-#  - xterm-titles
 # all have nothing but a base folder
-match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base|xterm-titles)/base/
+match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/
 	repository macports/base
 	branch \1
+end match
+
+# xterm-titles only branches base, but was branched twice; ignore the first
+# deleted branch
+match /branches/(xterm-titles)/base/
+	repository macports/base
+	branch \1
+	min revision 66301
+	# See https://trac.macports.org/changeset/66299 and https://trac.macports.org/changeset/66300
 end match
 
 match /branches/[^/]+
