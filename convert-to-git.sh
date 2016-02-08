@@ -37,7 +37,9 @@ if [ ! -f "$svn2git" ]; then
 	exit 2
 fi
 
-indir=$PWD/repo
+# Configure variables; it seems the input directory must be relative, or
+# svn2git will crash at the end.
+indir=../repo
 outdir=$PWD/git
 identity_map=$current_dir/gitconversion.authors
 rules=$current_dir/gitconversion.rules
