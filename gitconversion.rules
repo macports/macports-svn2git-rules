@@ -25,6 +25,116 @@ end repository
 create repository macports/pallet
 end repository
 
+# User repositories
+# Generate list using
+#   svn ls https://svn.macports.org/repository/macports/users | sed -E 's#/$##' | while read repo; do
+#     printf "create repository macports/users/%s\nend repository\n" "$repo"
+#   done
+create repository macports/users/afb
+end repository
+create repository macports/users/anddam
+end repository
+create repository macports/users/armahg
+end repository
+create repository macports/users/blb
+end repository
+create repository macports/users/cal
+end repository
+create repository macports/users/chunyang
+end repository
+create repository macports/users/devans
+end repository
+create repository macports/users/dports
+end repository
+create repository macports/users/dweber
+end repository
+create repository macports/users/easieste
+end repository
+create repository macports/users/eborisch
+end repository
+create repository macports/users/elelay
+end repository
+create repository macports/users/eridius
+end repository
+create repository macports/users/febeling
+end repository
+create repository macports/users/fotanus
+end repository
+create repository macports/users/g5pw
+end repository
+create repository macports/users/gaurav
+end repository
+create repository macports/users/ged
+end repository
+create repository macports/users/giorgio_v
+end repository
+create repository macports/users/hum
+end repository
+create repository macports/users/imajes
+end repository
+create repository macports/users/ionic
+end repository
+create repository macports/users/jberry
+end repository
+create repository macports/users/jmpp
+end repository
+create repository macports/users/jmr
+end repository
+create repository macports/users/juanger
+end repository
+create repository macports/users/khindenburg
+end repository
+create repository macports/users/kimuraw
+end repository
+create repository macports/users/krischik
+end repository
+create repository macports/users/landonf
+end repository
+create repository macports/users/larryv
+end repository
+create repository macports/users/mk
+end repository
+create repository macports/users/mmoll
+end repository
+create repository macports/users/mnick
+end repository
+create repository macports/users/mojca
+end repository
+create repository macports/users/mww
+end repository
+create repository macports/users/nox
+end repository
+create repository macports/users/perry
+end repository
+create repository macports/users/petr
+end repository
+create repository macports/users/pguyot
+end repository
+create repository macports/users/pipping
+end repository
+create repository macports/users/pixilla
+end repository
+create repository macports/users/raimue
+end repository
+create repository macports/users/rhwood
+end repository
+create repository macports/users/rmstonecipher
+end repository
+create repository macports/users/ryandesign
+end repository
+create repository macports/users/saispo
+end repository
+create repository macports/users/scantor
+end repository
+create repository macports/users/sfiera
+end repository
+create repository macports/users/toby
+end repository
+create repository macports/users/wms
+end repository
+create repository macports/users/yves
+end repository
+
 create repository leftovers
 end repository
 
