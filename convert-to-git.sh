@@ -81,10 +81,12 @@ max_rev=$(svnlook youngest "$indir")
 echo "$max_rev" > "lastrev"
 
 # Compress output repositories
-for repo in "$outdir/macports/"*; do
-	printf "Compressing repository in %s\n" "$repo"
-	du -sh "$repo"
-	git -C "$repo" gc --aggressive --prune=all
-	git -C "$repo" repack -a -d -f --window=250 --depth=250
-	du -sh "$repo"
-done
+if [ $resume_from -eq 0 ]; then
+	for repo in "$outdir/macports/"*; do
+		printf "Compressing repository in %s\n" "$repo"
+		du -sh "$repo"
+		git -C "$repo" gc --aggressive --prune=all
+		git -C "$repo" repack -a -d -f --window=250 --depth=250
+		du -sh "$repo"
+	done
+fi
