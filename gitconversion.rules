@@ -154,6 +154,9 @@ match /trunk/doc-new/
 	repository macports/guide
 	branch master
 end match
+# Remove automatically committed PortIndex and PortIndex.quick files
+match /trunk/dports/(PortIndex|PortIndex.quick)
+end match
 match /trunk/dports/
 	repository macports/ports
 	branch master
