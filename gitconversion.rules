@@ -74,8 +74,6 @@ create repository macports/users/imajes
 end repository
 create repository macports/users/ionic
 end repository
-create repository macports/users/jberry
-end repository
 create repository macports/users/jmpp
 end repository
 create repository macports/users/jmr
@@ -109,8 +107,6 @@ end repository
 create repository macports/users/petr
 end repository
 create repository macports/users/pguyot
-end repository
-create repository macports/users/pipping
 end repository
 create repository macports/users/pixilla
 end repository
@@ -465,6 +461,15 @@ end match
 #########
 # Explicitly drop dluke's user repo, it was deleted 8 years ago
 match /users/dluke/
+end match
+
+# Remove pipping's user repo that contains a bunch of 9 year old binaries
+match /users/pipping/
+end match
+
+# Remove jberry's user repo that contains 9 year old dumps of opendarwin
+# archives and wiki
+match /users/jberry/
 end match
 
 # Split user folders into separate repos
