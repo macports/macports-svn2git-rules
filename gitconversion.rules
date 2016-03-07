@@ -500,6 +500,32 @@ end match
 ########
 # TAGS #
 ########
+match /tags/release_2_2_0-archive/base/
+	# ignore /tags/release_2_2_0-archive/base before 108411
+	# r108409 incorrectly created this, r108410 deleted it, r108411 created it correctly
+	max revision 108410
+end match
+match /tags/release_2_3_4/
+	# ignore /tags/release_2_3_4 before 140726
+	# r140722 incorrectly tagged, r140723 deleted tag, r140724-r140725 fixed, r140726 created fixed tag
+	max revision 140725
+end match
+match /tags/release_1_4_0-archive/
+	# ignore /tags/release_1_4_0-archive before 23641
+	# r23639 incorrectly tagged, r23640 deleted tag, r23641 created fixed tag
+	max revision 23640
+end match
+match /tags/release_1_4-rc2/
+	# release_1_4-rc2 was never a valid tag name
+	# r22788 created, r22789 deleted, r22790 created with the correct name
+end match
+match /tags/release_1_4_0/
+	# ignore /tags/release_1_4_0 before 23203
+	# the release_1_4_0 tag was created and deleted multiple times; it wasn't
+	# until r23203 that the tag was finally in the right state, so ignore
+	# everything older than that.
+	max revision 23202
+end match
 match /tags/([^/]+)/base/
 	repository macports/base
 	branch refs/tags/\1
