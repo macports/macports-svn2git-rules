@@ -7,7 +7,7 @@ set -euo pipefail
 # incremental import should be continued, or the output directory should be
 # deleted, starting from scratch.
 force=0
-if [ $# -gt 1 ] && [ "$1" == "-f" ]; then
+if [ $# -gt 0 ] && [ "$1" == "-f" ]; then
 	force=1
 	echo "Force option set, removing existing work directory." >&2
 fi
@@ -81,7 +81,7 @@ max_rev=$(svnlook youngest "$indir")
 echo "$max_rev" > "lastrev"
 
 # Compress output repositories
-if [ $resume_from -eq 0 ]; then
+if [ $resume_from -eq 1 ]; then
 	for repo in "$outdir/macports/"*; do
 		printf "Compressing repository in %s\n" "$repo"
 		du -sh "$repo"
