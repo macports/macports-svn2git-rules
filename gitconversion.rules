@@ -135,10 +135,6 @@ end repository
 create repository macports/users/yves
 end repository
 
-# repositories from the history which are no longer part of current base
-create repository macports/users/dluke
-end repository
-
 create repository leftovers
 end repository
 
@@ -464,6 +460,10 @@ end match
 #########
 # USERS #
 #########
+# Explicitly drop dluke's user repo, it was deleted 8 years ago
+match /users/dluke/
+end match
+
 # Split user folders into separate repos
 match /users/([^/]+)/
 	repository macports/users/\1
