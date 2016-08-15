@@ -25,6 +25,10 @@ end repository
 create repository macports/pallet
 end repository
 
+# Repository for mp-buildbot, we're splitting it out
+create repository macports/mp-buildbot
+end repository
+
 # User repositories
 # Generate list using
 #   svn ls https://svn.macports.org/repository/macports/users | sed -E 's#/$##' | while read repo; do
@@ -449,6 +453,16 @@ match /contrib/(MacPorts_Framework|Pallet)/
 	repository macports/pallet
 	branch master
 	prefix \1/
+end match
+
+match /contrib/mpab/
+	repository macports/mp-buildbot
+	branch mpab
+end match
+
+match /contrib/mp-buildbot/
+	repository macports/mp-buildbot
+	branch master
 end match
 
 match /contrib/
