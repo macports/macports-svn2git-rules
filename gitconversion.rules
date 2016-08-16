@@ -29,6 +29,10 @@ end repository
 create repository macports/mp-buildbot
 end repository
 
+# Repository for infrastructure things
+create repository macports/infrastructure
+end repository
+
 # User repositories
 # Generate list using
 #   svn ls https://svn.macports.org/repository/macports/users | sed -E 's#/$##' | while read repo; do
@@ -102,6 +106,8 @@ create repository macports/users/mnick
 end repository
 create repository macports/users/mojca
 end repository
+create repository macports/users/mps
+end repository
 create repository macports/users/mww
 end repository
 create repository macports/users/nox
@@ -142,6 +148,12 @@ end repository
 # TRUNK #
 #########
 # Convert /trunk/* folders into their appropriate target repository
+match /trunk/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch master
+	prefix jobs/
+end match
+
 match /trunk/base/
 	repository macports/base
 	branch master
@@ -180,6 +192,11 @@ end match
 
 # bigmove has base/ and dports/, create appropriate branches in their repos.
 # Put the README file into base.
+match /branches/(bigmove)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(bigmove)/(base|README)/
 	repository macports/base
 	branch \1
@@ -198,6 +215,11 @@ end match
 
 # gsoc09-gui has a base/ folder and some GUI stuff; let's branch the base off
 # macports-base and put the rest into Pallet's repository.
+match /branches/(gsoc09-gui)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc09-gui)/base/
 	repository macports/base
 	branch \1
@@ -212,6 +234,11 @@ end match
 #  - code-submit/, which we'll ignore
 #  - tools/, which is helpful, so we'll put it into macports-base (which will
 #    work because base doesn't have a tools subfolder)
+match /branches/(gsoc10-configfiles)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc10-configfiles)/base/
 	repository macports/base
 	branch \1
@@ -236,6 +263,11 @@ end match
 
 # gsoc11-statistics has changes to base and a server component. Let's keep the
 # server + docs in a contrib branch for now.
+match /branches/(gsoc11-statistics)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc11-statistics)/base/
 	repository macports/base
 	branch \1
@@ -251,12 +283,22 @@ match /branches/(gsoc11-statistics)/
 end match
 
 # gsoc13-tests is a direct branch off base/
+match /branches/(gsoc13-tests)/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc13-tests)/
 	repository macports/base
 	branch \1
 end match
 
 # gsoc14-cleanup is a direct branch off base/
+match /branches/(gsoc14-cleanup)/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc14-cleanup)/
 	repository macports/base
 	branch \1
@@ -268,6 +310,11 @@ end match
 
 # gsoc14-interactive has a base folder and some aux files; we're just going to
 # put the aux files into a subfolder
+match /branches/(gsoc14-interactive)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc14-interactive)/base/
 	repository macports/base
 	branch \1
@@ -286,6 +333,11 @@ end match
 
 # gsoc15-portfile has a copy of base and all sorts of additional folders and
 # files that we'll move into a subfolder of base 
+match /branches/(gsoc15-portfile)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(gsoc15-portfile)/base/
 	repository macports/base
 	branch \1
@@ -299,6 +351,11 @@ end match
 # jkh-destrootification is a complete branch off trunk/. Let's map the
 # approriate subfolders. Additionally, there's a Makefile and a couple of
 # READMEs, which however, are very generic and thus not really worth keeping.
+match /branches/(jkh-destrootification)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(jkh-destrootification)/base/
 	repository macports/base
 	branch \1
@@ -319,6 +376,11 @@ end match
 # kevin-target-api is a complete branch off trunk/. Let's map the approriate
 # subfolders. Additionally, there's a Makefile and a couple of READMEs, which
 # however, are very generic and thus not really worth keeping.
+match /branches/(kevin-target-api)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(kevin-target-api)/base/
 	repository macports/base
 	branch \1
@@ -352,6 +414,11 @@ end match
 # launchdproto branches off base and has a couple of README files for
 # darwinports in different lanuguages. We're going to drop the READMEs for the
 # lack of a better place to put them.
+match /branches/(launchdproto)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(launchdproto)/base/
 	repository macports/base
 	branch \1
@@ -360,6 +427,11 @@ end match
 # mld-qt-481 is a complete branch off trunk/. Let's map the approriate
 # subfolders. Additionally, there's a Makefile and a .gitignore, which however,
 # are very generic and thus not really worth keeping.
+match /branches/(mld-qt-481)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(mld-qt-481)/base/
 	repository macports/base
 	branch \1
@@ -383,6 +455,11 @@ end match
 
 # qt4-mac-move-to-libexec is (unfortunately) a copy of trunk/. Let's map the
 # approriate subfolders inside trunk/ back where they belong.
+match /branches/(qt4-mac-move-to-libexec)/trunk/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/base/
 	repository macports/base
 	branch \1
@@ -422,6 +499,11 @@ end match
 #  - wbb4-versionfoobage-1
 #  - wbb4_versionfoobage_base
 # all have nothing but a base folder
+match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+end match
 match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/
 	repository macports/base
 	branch \1
@@ -429,6 +511,12 @@ end match
 
 # xterm-titles only branches base, but was branched twice; ignore the first
 # deleted branch
+match /branches/(xterm-titles)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+	min revision 66301
+end match
 match /branches/(xterm-titles)/base/
 	repository macports/base
 	branch \1
@@ -463,6 +551,18 @@ end match
 match /contrib/mp-buildbot/
 	repository macports/mp-buildbot
 	branch master
+end match
+
+match /contrib/buildbot/
+	repository macports/infrastructure
+	branch master
+	prefix buildbot-old/
+end match
+
+match /contrib/buildbot-test/
+	repository macports/infrastructure
+	branch master
+	prefix buildbot/
 end match
 
 match /contrib/
