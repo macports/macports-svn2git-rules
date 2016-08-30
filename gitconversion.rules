@@ -555,8 +555,8 @@ end match
 
 match /contrib/buildbot/
 	repository macports/infrastructure
-	branch master
-	prefix buildbot-old/
+	branch buildbot-mpab
+	prefix buildbot/
 end match
 
 match /contrib/buildbot-test/
