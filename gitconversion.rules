@@ -141,6 +141,10 @@ end repository
 create repository macports/users/yves
 end repository
 
+# User projects that should be separate repositories
+create repository pclauncher
+end repository
+
 create repository leftovers
 end repository
 
@@ -584,6 +588,12 @@ end match
 # Remove jberry's user repo that contains 9 year old dumps of opendarwin
 # archives and wiki
 match /users/jberry/
+end match
+
+# Move ryandesign's PCLauncher into a separate repository.
+match /users/ryandesign/PCLauncher/
+	repository pclauncher
+	branch master
 end match
 
 # Split user folders into separate repos
