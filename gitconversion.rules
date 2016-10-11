@@ -587,6 +587,21 @@ match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc
 	repository macports/base
 	branch \1
 end match
+# Handle branches/release1 different to rename it to release_1, which matches the other release branches
+match /branches/release1/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch release_1_0
+	prefix jobs/
+end match
+match /branches/release1/base/src/port1.0/resources/
+	repository macports/ports
+	branch release_1_0
+	prefix _resources/port1.0/
+end match
+match /branches/release1/base/
+	repository macports/base
+	branch release_1_0
+end match
 
 # xterm-titles only branches base, but was branched twice; ignore the first
 # deleted branch
