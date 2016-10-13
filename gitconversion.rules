@@ -414,10 +414,6 @@ match /branches/(jkh-destrootification)/base/
 	repository macports/base
 	branch \1
 end match
-match /branches/(jkh-destrootification)/doc/
-	repository macports/guide
-	branch doc-old-\1
-end match
 match /branches/(jkh-destrootification)/dports/
 	repository macports/ports
 	branch \1
@@ -439,10 +435,6 @@ end match
 match /branches/(kevin-target-api)/base/
 	repository macports/base
 	branch \1
-end match
-match /branches/(kevin-target-api)/doc/
-	repository macports/guide
-	branch doc-old-\1
 end match
 match /branches/(kevin-target-api)/dports/
 	repository macports/ports
@@ -497,14 +489,6 @@ match /branches/(mld-qt-481)/base/
 	repository macports/base
 	branch \1
 end match
-match /branches/(mld-qt-481)/doc/
-	repository macports/guide
-	branch doc-old-\1
-end match
-match /branches/(mld-qt-481)/doc-new/
-	repository macports/guide
-	branch \1
-end match
 match /branches/(mld-qt-481)/dports/
 	repository macports/ports
 	branch \1
@@ -524,14 +508,6 @@ match /branches/(qt4-mac-move-to-libexec)/trunk/base/src/port1.0/resources/
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/base/
 	repository macports/base
-	branch \1
-end match
-match /branches/(qt4-mac-move-to-libexec)/trunk/doc/
-	repository macports/guide
-	branch doc-old-\1
-end match
-match /branches/(qt4-mac-move-to-libexec)/trunk/doc-new/
-	repository macports/guide
 	branch \1
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/dports/
