@@ -566,24 +566,26 @@ end match
 #  - jberry-dropprivs
 #  - jberry-preview13
 #  - landonf-1_0
+#  - portgroups-selector
 #  - release_[^/]+
 #  - rshaw-archivemode
 #  - ssen-platform-[12]
 #  - universal-sanity
+#  - vcs-fetch
 #  - wbb4-versionfoobage-1
 #  - wbb4_versionfoobage_base
 # all have nothing but a base folder
-match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/portmgr/jobs/
+match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
 end match
-match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/src/port1.0/resources/
+match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/src/port1.0/resources/
 	repository macports/ports
 	branch \1
 	prefix _resources/port1.0/
 end match
-match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/
+match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/
 	repository macports/base
 	branch \1
 end match
