@@ -422,10 +422,6 @@ match /branches/(jkh-destrootification)/dports/
 	repository macports/ports
 	branch \1
 end match
-match /branches/(jkh-destrootification)/www/
-	repository macports/www
-	branch \1
-end match
 
 # kevin-target-api is a complete branch off trunk/. Let's map the approriate
 # subfolders. Additionally, there's a Makefile and a couple of READMEs, which
@@ -450,10 +446,6 @@ match /branches/(kevin-target-api)/doc/
 end match
 match /branches/(kevin-target-api)/dports/
 	repository macports/ports
-	branch \1
-end match
-match /branches/(kevin-target-api)/www/
-	repository macports/www
 	branch \1
 end match
 
@@ -517,10 +509,6 @@ match /branches/(mld-qt-481)/dports/
 	repository macports/ports
 	branch \1
 end match
-match /branches/(mld-qt-481)/www/
-	repository macports/www
-	branch \1
-end match
 
 # qt4-mac-move-to-libexec is (unfortunately) a copy of trunk/. Let's map the
 # approriate subfolders inside trunk/ back where they belong.
@@ -548,10 +536,6 @@ match /branches/(qt4-mac-move-to-libexec)/trunk/doc-new/
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/dports/
 	repository macports/ports
-	branch \1
-end match
-match /branches/(qt4-mac-move-to-libexec)/trunk/www/
-	repository macports/www
 	branch \1
 end match
 
