@@ -530,6 +530,12 @@ end match
 match /branches/(larryv-subversion-subports)/dports/
 	repository macports/ports
 	branch \1
+	min revision 109785
+end match
+match /branches/subversion-subports/dports/
+	# Ignore the copy to avoid triggering
+	# WARN: backing up branch "larryv-subversion-subports" to "refs/backups/r109784/heads/larryv-subversion-subports"
+	max revision 109784
 end match
 
 # launchdproto branches off base and has a couple of README files for
