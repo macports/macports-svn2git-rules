@@ -637,6 +637,11 @@ match /branches/(release_1_4)/
 	branch \1
 	max revision 23201
 end match
+match /branches/(release_1_4)/
+	# Ignore the copy operation completely
+	min revision 23202
+	max revision 23202
+end match
 match /branches/(release_1_4)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
