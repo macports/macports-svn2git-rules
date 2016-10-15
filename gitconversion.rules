@@ -626,9 +626,6 @@ end match
 match /branches/[^/]+
 	action recurse
 end match
-match /branches/[^/]+/[^/]+
-	action recurse
-end match
 
 
 ###########
