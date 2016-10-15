@@ -202,8 +202,46 @@ end match
 ############
 # There should be one entry for each branch that we're going to keep here.
 
-# Drop branches/APPLE
+# Drop a number of branches we no longer need
 match /branches/APPLE/
+end match
+match /branches/foo/
+	# Accidentially created
+end match
+match /branches/fooo/
+	# Accidentially created, see https://trac-test.macports.org/changeset/23636
+end match
+match /branches/gsoc-11-rev-upgrade/
+	# Accidentially created, note the incorrect naming scheme for GSoC branches
+end match
+match /branches/gsoc11-rev-upgrade/
+	# Merged & deleted
+end match
+match /branches/gsoc08-logging/
+	# Deleted, see https://trac.macports.org/changeset/49339
+end match
+match /branches/gsoc08-mpwa/
+	# Deleted, see https://trac.macports.org/changeset/49339
+end match
+match /branches/gsoc15-portfile-generator/
+	# Deleted, see https://trac.macports.org/changeset/137074
+end match
+match /branches/new-help-system/
+	# Merged & deleted, see https://trac.macports.org/changeset/123003
+end match
+match /branches/pixilla-mysqls-55/
+	# Deleted, see https://trac.macports.org/changeset/124377
+end match
+match /branches/python-frameworks/
+	# Merged & deleted, see https://trac.macports.org/changeset/37822
+end match
+match /branches/(doc-new-test|simon-doc-test)/
+	# Merged & deleted, see https://trac.macports.org/changeset/31832
+	# See also https://trac.macports.org/changeset/31209 for the doc-new-test
+	# name
+end match
+match /branches/variant-descs-14482/
+	# Merged & deleted, see https://trac.macports.org/changeset/49338
 end match
 
 # bigmove has base/ and dports/, create appropriate branches in their repos.
@@ -260,6 +298,10 @@ end match
 #  - code-submit/, which we'll ignore
 #  - tools/, which is helpful, so we'll put it into macports-base (which will
 #    work because base doesn't have a tools subfolder)
+match /branches/(gsoc10-configfiles)/code-submit/
+	# Just the code submission for Google after GSoC, no point in keeping, the
+	# same code is in the repo
+end match
 match /branches/(gsoc10-configfiles)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
@@ -353,6 +395,10 @@ match /branches/(gsoc14-cleanup)/
 	# See https://trac.macports.org/log/branches/gsoc14-cleanup?action=stop_on_copy&mode=stop_on_copy&rev=123736&stop_rev=&limit=100
 	# and https://trac.macports.org/log/branches/gsoc14-cleanup?action=stop_on_copy&mode=stop_on_copy&rev=124046&stop_rev=&limit=100
 end match
+match /branches/(gsoc14-cleanup)/
+	# ignore all branches named gsoc14-cleanup before 123738, they were removed later
+	max revision 123738
+end match
 
 # gsoc14-interactive has a base folder and some aux files; we're just going to
 # put the aux files into a subfolder
@@ -374,6 +420,14 @@ match /branches/(gsoc14-interactive)/
 	repository macports/base
 	branch \1
 	prefix gsoc14-interactive/
+end match
+
+# gsoc14-pip2port was later copied to contrib in https://trac.macports.org/changeset/125293
+# Let's keep its history there
+match /branches/(gsoc14-pip2port)/
+	repository macports/contrib
+	branch master
+	prefix pypi2port/
 end match
 
 # gsoc15-pallet contains pallet code and should thus go to its repo
@@ -467,6 +521,11 @@ match /branches/(larryv-mpvim-rewrite)/
 	prefix mpvim/
 end match
 
+# the subversion-subports branch was renamed in https://trac.macports.org/changeset/109784
+match /branches/subversion-subports/dports/
+	repository macports/ports
+	branch larryv-subversion-subports
+end match
 # larryv-subversion-subports is a branch off dports
 match /branches/(larryv-subversion-subports)/dports/
 	repository macports/ports
@@ -552,6 +611,44 @@ match /branches/(qt4-mac-move-to-libexec)/trunk/www/
 	# We aren't interested in this stale branch
 end match
 
+# Handle release_1_4 specially, because it was initially created as a copy of
+# base in r22198, and had its content moved into a base subfolder in r23202 to
+# match the other branches. We'll hide this.
+match /branches/(release_1_4)/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+	max revision 23202
+end match
+match /branches/(release_1_4)/src/port1.0/resources/
+	repository macports/ports
+	branch \1
+	prefix _resources/port1.0/
+	max revision 23202
+end match
+match /branches/(release_1_4)/
+	repository macports/base
+	branch \1
+	max revision 23202
+end match
+match /branches/(release_1_4)/base/portmgr/jobs/
+	repository macports/infrastructure
+	branch \1
+	prefix jobs/
+	min revision 23203
+end match
+match /branches/(release_1_4)/base/src/port1.0/resources/
+	repository macports/ports
+	branch \1
+	prefix _resources/port1.0/
+	min revision 23203
+end match
+match /branches/(release_1_4)/base/
+	repository macports/base
+	branch \1
+	min revision 23203
+end match
+
 # The branches
 #  - dp2mp-move
 #  - dp_light-olegb
@@ -621,6 +718,11 @@ match /branches/(xterm-titles)/base/
 	branch \1
 	min revision 66301
 	# See https://trac.macports.org/changeset/66299 and https://trac.macports.org/changeset/66300
+end match
+match /branches/xterm-titles/
+	# Everything that falls though until here wasn't caught by the rules above
+	# and can simply be ignored
+	max revision 66300
 end match
 
 match /branches/[^/]+
