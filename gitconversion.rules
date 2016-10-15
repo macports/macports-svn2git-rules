@@ -618,18 +618,18 @@ match /branches/(release_1_4)/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-	max revision 23202
+	max revision 23201
 end match
 match /branches/(release_1_4)/src/port1.0/resources/
 	repository macports/ports
 	branch \1
 	prefix _resources/port1.0/
-	max revision 23202
+	max revision 23201
 end match
 match /branches/(release_1_4)/
 	repository macports/base
 	branch \1
-	max revision 23202
+	max revision 23201
 end match
 match /branches/(release_1_4)/base/portmgr/jobs/
 	repository macports/infrastructure
