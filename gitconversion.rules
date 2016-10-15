@@ -837,6 +837,15 @@ match /tags/release_1_4-rc2/
 	# release_1_4-rc2 was never a valid tag name
 	# r22788 created, r22789 deleted, r22790 created with the correct name
 end match
+# Handle release_1_4_0-rc1 and release_1_4_0-rc2 specially, because they were
+# tagged from the release_1_4 branch at a time when it did not contain a base
+# folder, but was a copy of base. See r22198, which copied it, and r23202,
+# which created the base subfolder.
+match /tags/(release_1_4_0-rc[12])/
+	repository macports/base
+	branch refs/tags/\1
+	annotated true
+end match
 match /tags/release_1_4_0/
 	# ignore /tags/release_1_4_0 before 23203
 	# the release_1_4_0 tag was created and deleted multiple times; it wasn't
@@ -868,6 +877,9 @@ match /tags/([^/]+)/www/
 	repository macports/www
 	branch refs/tags/\1
 	annotated true
+end match
+match /tags/gimp_1_3_15/
+	# We don't need this tag, see https://trac-test.macports.org/changeset/2927/
 end match
 
 match /tags/[^/]+
