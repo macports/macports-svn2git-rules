@@ -157,11 +157,6 @@ match /trunk/base/portmgr/jobs/
 	branch master
 	prefix jobs/
 end match
-match /trunk/base/src/port1.0/resources/
-	repository macports/ports
-	branch master
-	prefix _resources/port1.0/
-end match
 
 match /trunk/base/
 	repository macports/base
@@ -251,11 +246,6 @@ match /branches/(bigmove)/base/portmgr/jobs/
 	branch \1
 	prefix jobs/
 end match
-match /branches/(bigmove)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(bigmove)/(base|README)/
 	repository macports/base
 	branch \1
@@ -279,11 +269,6 @@ match /branches/(gsoc09-gui)/base/portmgr/jobs/
 	branch \1
 	prefix jobs/
 end match
-match /branches/(gsoc09-gui)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(gsoc09-gui)/base/
 	repository macports/base
 	branch \1
@@ -306,11 +291,6 @@ match /branches/(gsoc10-configfiles)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(gsoc10-configfiles)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(gsoc10-configfiles)/base/
 	repository macports/base
@@ -341,11 +321,6 @@ match /branches/(gsoc11-statistics)/base/portmgr/jobs/
 	branch \1
 	prefix jobs/
 end match
-match /branches/(gsoc11-statistics)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(gsoc11-statistics)/base/
 	repository macports/base
 	branch \1
@@ -366,11 +341,6 @@ match /branches/(gsoc13-tests)/portmgr/jobs/
 	branch \1
 	prefix jobs/
 end match
-match /branches/(gsoc13-tests)/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(gsoc13-tests)/
 	repository macports/base
 	branch \1
@@ -381,11 +351,6 @@ match /branches/(gsoc14-cleanup)/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(gsoc14-cleanup)/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(gsoc14-cleanup)/
 	repository macports/base
@@ -406,11 +371,6 @@ match /branches/(gsoc14-interactive)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(gsoc14-interactive)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(gsoc14-interactive)/base/
 	repository macports/base
@@ -443,11 +403,6 @@ match /branches/(gsoc15-portfile)/base/portmgr/jobs/
 	branch \1
 	prefix jobs/
 end match
-match /branches/(gsoc15-portfile)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(gsoc15-portfile)/base/
 	repository macports/base
 	branch \1
@@ -465,11 +420,6 @@ match /branches/(jkh-destrootification)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(jkh-destrootification)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(jkh-destrootification)/base/
 	repository macports/base
@@ -493,11 +443,6 @@ match /branches/(kevin-target-api)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(kevin-target-api)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(kevin-target-api)/base/
 	repository macports/base
@@ -546,11 +491,6 @@ match /branches/(launchdproto)/base/portmgr/jobs/
 	branch \1
 	prefix jobs/
 end match
-match /branches/(launchdproto)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(launchdproto)/base/
 	repository macports/base
 	branch \1
@@ -563,11 +503,6 @@ match /branches/(mld-qt-481)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(mld-qt-481)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(mld-qt-481)/base/
 	repository macports/base
@@ -593,11 +528,6 @@ match /branches/(qt4-mac-move-to-libexec)/trunk/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-end match
-match /branches/(qt4-mac-move-to-libexec)/trunk/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/base/
 	repository macports/base
@@ -685,11 +615,6 @@ match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc
 	branch \1
 	prefix jobs/
 end match
-match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-end match
 match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/
 	repository macports/base
 	branch \1
@@ -716,12 +641,6 @@ match /branches/(xterm-titles)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-	min revision 66301
-end match
-match /branches/(xterm-titles)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 	min revision 66301
 end match
 match /branches/(xterm-titles)/base/
