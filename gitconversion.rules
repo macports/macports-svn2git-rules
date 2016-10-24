@@ -556,12 +556,6 @@ match /branches/(release_1_4)/portmgr/jobs/
 	prefix jobs/
 	max revision 23201
 end match
-match /branches/(release_1_4)/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
-	max revision 23201
-end match
 match /branches/(release_1_4)/
 	repository macports/base
 	branch \1
@@ -576,12 +570,6 @@ match /branches/(release_1_4)/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch \1
 	prefix jobs/
-	min revision 23203
-end match
-match /branches/(release_1_4)/base/src/port1.0/resources/
-	repository macports/ports
-	branch \1
-	prefix _resources/port1.0/
 	min revision 23203
 end match
 match /branches/(release_1_4)/base/
@@ -624,11 +612,6 @@ match /branches/release1/base/portmgr/jobs/
 	repository macports/infrastructure
 	branch release_1_0
 	prefix jobs/
-end match
-match /branches/release1/base/src/port1.0/resources/
-	repository macports/ports
-	branch release_1_0
-	prefix _resources/port1.0/
 end match
 match /branches/release1/base/
 	repository macports/base
