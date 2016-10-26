@@ -1,144 +1,144 @@
 # vim:ft=conf
 
 # MacPorts base repository
-create repository macports/base
+create repository macports-base
 end repository
 
 # MacPorts portfiles
-create repository macports/ports
+create repository macports-ports
 end repository
 
 # The trunk/doc-new folder which we use to generate the guide
-create repository macports/guide
+create repository macports-guide
 end repository
 
 # Repository for the code running on the website
-create repository macports/www
+create repository macports-www
 end repository
 
 # Contributed parts
-create repository macports/contrib
+create repository macports-contrib
 end repository
 
 # Repository for Pallet, because some GSoCs worked on it and it doesn't make
 # sense to put it as a branch to macports-base.
-create repository macports/pallet
+create repository pallet
 end repository
 
-# Repository for mp-buildbot, we're splitting it out
-create repository macports/mp-buildbot
+# Repository for mpbb, we're splitting it out
+create repository mpbb
 end repository
 
 # Repository for infrastructure things
-create repository macports/infrastructure
+create repository macports-infrastructure
 end repository
 
 # User repositories
 # Generate list using
 #   svn ls https://svn.macports.org/repository/macports/users | sed -E 's#/$##' | while read repo; do
-#     printf "create repository macports/users/%s\nend repository\n" "$repo"
+#     printf "create repository macports-user-%s\nend repository\n" "$repo"
 #   done
-create repository macports/users/afb
+create repository macports-user-afb
 end repository
-create repository macports/users/anddam
+create repository macports-user-anddam
 end repository
-create repository macports/users/armahg
+create repository macports-user-armahg
 end repository
-create repository macports/users/blb
+create repository macports-user-blb
 end repository
-create repository macports/users/cal
+create repository macports-user-cal
 end repository
-create repository macports/users/chunyang
+create repository macports-user-chunyang
 end repository
-create repository macports/users/devans
+create repository macports-user-devans
 end repository
-create repository macports/users/dports
+create repository macports-user-dports
 end repository
-create repository macports/users/dweber
+create repository macports-user-dweber
 end repository
-create repository macports/users/easieste
+create repository macports-user-easieste
 end repository
-create repository macports/users/eborisch
+create repository macports-user-eborisch
 end repository
-create repository macports/users/elelay
+create repository macports-user-elelay
 end repository
-create repository macports/users/eridius
+create repository macports-user-eridius
 end repository
-create repository macports/users/febeling
+create repository macports-user-febeling
 end repository
-create repository macports/users/fotanus
+create repository macports-user-fotanus
 end repository
-create repository macports/users/g5pw
+create repository macports-user-g5pw
 end repository
-create repository macports/users/gaurav
+create repository macports-user-gaurav
 end repository
-create repository macports/users/ged
+create repository macports-user-ged
 end repository
-create repository macports/users/giorgio_v
+create repository macports-user-giorgio_v
 end repository
-create repository macports/users/hum
+create repository macports-user-hum
 end repository
-create repository macports/users/imajes
+create repository macports-user-imajes
 end repository
-create repository macports/users/ionic
+create repository macports-user-ionic
 end repository
-create repository macports/users/jmpp
+create repository macports-user-jmpp
 end repository
-create repository macports/users/jmr
+create repository macports-user-jmr
 end repository
-create repository macports/users/juanger
+create repository macports-user-juanger
 end repository
-create repository macports/users/khindenburg
+create repository macports-user-khindenburg
 end repository
-create repository macports/users/kimuraw
+create repository macports-user-kimuraw
 end repository
-create repository macports/users/krischik
+create repository macports-user-krischik
 end repository
-create repository macports/users/landonf
+create repository macports-user-landonf
 end repository
-create repository macports/users/larryv
+create repository macports-user-larryv
 end repository
-create repository macports/users/mk
+create repository macports-user-mk
 end repository
-create repository macports/users/mmoll
+create repository macports-user-mmoll
 end repository
-create repository macports/users/mnick
+create repository macports-user-mnick
 end repository
-create repository macports/users/mojca
+create repository macports-user-mojca
 end repository
-create repository macports/users/mps
+create repository macports-user-mps
 end repository
-create repository macports/users/mww
+create repository macports-user-mww
 end repository
-create repository macports/users/nox
+create repository macports-user-nox
 end repository
-create repository macports/users/perry
+create repository macports-user-perry
 end repository
-create repository macports/users/petr
+create repository macports-user-petr
 end repository
-create repository macports/users/pguyot
+create repository macports-user-pguyot
 end repository
-create repository macports/users/pixilla
+create repository macports-user-pixilla
 end repository
-create repository macports/users/raimue
+create repository macports-user-raimue
 end repository
-create repository macports/users/rhwood
+create repository macports-user-rhwood
 end repository
-create repository macports/users/rmstonecipher
+create repository macports-user-rmstonecipher
 end repository
-create repository macports/users/ryandesign
+create repository macports-user-ryandesign
 end repository
-create repository macports/users/saispo
+create repository macports-user-saispo
 end repository
-create repository macports/users/scantor
+create repository macports-user-scantor
 end repository
-create repository macports/users/sfiera
+create repository macports-user-sfiera
 end repository
-create repository macports/users/toby
+create repository macports-user-toby
 end repository
-create repository macports/users/wms
+create repository macports-user-wms
 end repository
-create repository macports/users/yves
+create repository macports-user-yves
 end repository
 
 # User projects that should be separate repositories
@@ -153,21 +153,21 @@ end repository
 #########
 # Convert /trunk/* folders into their appropriate target repository
 match /trunk/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch master
 	prefix jobs/
 end match
 
 match /trunk/base/
-	repository macports/base
+	repository macports-base
 	branch master
 end match
 match /trunk/doc/
-	repository macports/guide
+	repository macports-guide
 	branch doc-old
 end match
 match /trunk/doc-new/
-	repository macports/guide
+	repository macports-guide
 	branch master
 end match
 # Remove automatically committed PortIndex and PortIndex.quick files
@@ -181,11 +181,11 @@ match /trunk/(lang|multimedia|sysutils|test)/
 	# ... and wherever that test change is, didn't want to wait for svnlook history . /trunk/
 end match
 match /trunk/dports/
-	repository macports/ports
+	repository macports-ports
 	branch master
 end match
 match /trunk/www/
-	repository macports/www
+	repository macports-www
 	branch master
 end match
 match /trunk/[^/]+
@@ -242,39 +242,39 @@ end match
 # bigmove has base/ and dports/, create appropriate branches in their repos.
 # Put the README file into base.
 match /branches/(bigmove)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(bigmove)/(base|README)/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(bigmove)/dports/
-	repository macports/ports
+	repository macports-ports
 	branch \1
 end match
 
 # gsoc08-framework only has only Pallet-specific code. Put that into a separate
 # repo (along with the rest of the Pallet code from contrib/)
 match /branches/(gsoc08-framework)/
-	repository macports/pallet
+	repository pallet
 	branch \1
 end match
 
 # gsoc09-gui has a base/ folder and some GUI stuff; let's branch the base off
 # macports-base and put the rest into Pallet's repository.
 match /branches/(gsoc09-gui)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc09-gui)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(gsoc09-gui)/
-	repository macports/pallet
+	repository pallet
 	branch \1
 end match
 
@@ -288,72 +288,72 @@ match /branches/(gsoc10-configfiles)/code-submit/
 	# same code is in the repo
 end match
 match /branches/(gsoc10-configfiles)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc10-configfiles)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(gsoc10-configfiles)/tools/
-	repository macports/base
+	repository macports-base
 	branch \1
 	prefix tools/
 end match
 
 # gsoc10-gui contains Pallet code, move it to pallet's repo
 match /branches/(gsoc10-gui)/
-	repository macports/pallet
+	repository pallet
 	branch \1
 end match
 
 # mpwa now lives in contrib, let's move gsoc10-mpwa there as well
 match /branches/(gsoc10-mpwa)/
-	repository macports/contrib
+	repository macports-contrib
 	branch \1
 end match
 
 # gsoc11-statistics has changes to base and a server component. Let's keep the
 # server + docs in a contrib branch for now.
 match /branches/(gsoc11-statistics)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc11-statistics)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(gsoc11-statistics)/docs/
-	repository macports/contrib
+	repository macports-contrib
 	branch \1
 	prefix stats-server/docs/
 end match
 match /branches/(gsoc11-statistics)/
-	repository macports/contrib
+	repository macports-contrib
 	branch \1
 end match
 
 # gsoc13-tests is a direct branch off base/
 match /branches/(gsoc13-tests)/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc13-tests)/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 
 # gsoc14-cleanup is a direct branch off base/
 match /branches/(gsoc14-cleanup)/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc14-cleanup)/
-	repository macports/base
+	repository macports-base
 	branch \1
 	min revision 123738
 	# The branch was deleted and re-created based on top of a svn copy of macports trunk
@@ -368,16 +368,16 @@ end match
 # gsoc14-interactive has a base folder and some aux files; we're just going to
 # put the aux files into a subfolder
 match /branches/(gsoc14-interactive)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc14-interactive)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(gsoc14-interactive)/
-	repository macports/base
+	repository macports-base
 	branch \1
 	prefix gsoc14-interactive/
 end match
@@ -385,30 +385,30 @@ end match
 # gsoc14-pip2port was later copied to contrib in https://trac.macports.org/changeset/125293
 # Let's keep its history there
 match /branches/(gsoc14-pip2port)/
-	repository macports/contrib
+	repository macports-contrib
 	branch master
 	prefix pypi2port/
 end match
 
 # gsoc15-pallet contains pallet code and should thus go to its repo
 match /branches/(gsoc15-pallet)/
-	repository macports/pallet
+	repository pallet
 	branch \1
 end match
 
 # gsoc15-portfile has a copy of base and all sorts of additional folders and
 # files that we'll move into a subfolder of base 
 match /branches/(gsoc15-portfile)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(gsoc15-portfile)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(gsoc15-portfile)/
-	repository macports/base
+	repository macports-base
 	branch \1
 	prefix gsoc15-portfile/
 end match
@@ -417,19 +417,19 @@ end match
 # approriate subfolders. Additionally, there's a Makefile and a couple of
 # READMEs, which however, are very generic and thus not really worth keeping.
 match /branches/(jkh-destrootification)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(jkh-destrootification)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(jkh-destrootification)/doc/
 	# We aren't interested in this stale branch
 end match
 match /branches/(jkh-destrootification)/dports/
-	repository macports/ports
+	repository macports-ports
 	branch \1
 end match
 match /branches/(jkh-destrootification)/www/
@@ -440,19 +440,19 @@ end match
 # subfolders. Additionally, there's a Makefile and a couple of READMEs, which
 # however, are very generic and thus not really worth keeping.
 match /branches/(kevin-target-api)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(kevin-target-api)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(kevin-target-api)/doc/
 	# We aren't interested in this stale branch
 end match
 match /branches/(kevin-target-api)/dports/
-	repository macports/ports
+	repository macports-ports
 	branch \1
 end match
 match /branches/(kevin-target-api)/www/
@@ -461,19 +461,19 @@ end match
 
 # larryv-mpvim-rewrite is branching off contrib's mpvim
 match /branches/(larryv-mpvim-rewrite)/
-	repository macports/contrib
+	repository macports-contrib
 	branch \1
 	prefix mpvim/
 end match
 
 # the subversion-subports branch was renamed in https://trac.macports.org/changeset/109784
 match /branches/subversion-subports/dports/
-	repository macports/ports
+	repository macports-ports
 	branch larryv-subversion-subports
 end match
 # larryv-subversion-subports is a branch off dports
 match /branches/(larryv-subversion-subports)/dports/
-	repository macports/ports
+	repository macports-ports
 	branch \1
 	min revision 109785
 end match
@@ -487,12 +487,12 @@ end match
 # darwinports in different lanuguages. We're going to drop the READMEs for the
 # lack of a better place to put them.
 match /branches/(launchdproto)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(launchdproto)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 
@@ -500,12 +500,12 @@ end match
 # subfolders. Additionally, there's a Makefile and a .gitignore, which however,
 # are very generic and thus not really worth keeping.
 match /branches/(mld-qt-481)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(mld-qt-481)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(mld-qt-481)/doc/
@@ -515,7 +515,7 @@ match /branches/(mld-qt-481)/doc-new/
 	# We aren't interested in this stale branch
 end match
 match /branches/(mld-qt-481)/dports/
-	repository macports/ports
+	repository macports-ports
 	branch \1
 end match
 match /branches/(mld-qt-481)/www/
@@ -525,12 +525,12 @@ end match
 # qt4-mac-move-to-libexec is (unfortunately) a copy of trunk/. Let's map the
 # approriate subfolders inside trunk/ back where they belong.
 match /branches/(qt4-mac-move-to-libexec)/trunk/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/doc/
@@ -540,7 +540,7 @@ match /branches/(qt4-mac-move-to-libexec)/trunk/doc-new/
 	# We aren't interested in this stale branch
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/dports/
-	repository macports/ports
+	repository macports-ports
 	branch \1
 end match
 match /branches/(qt4-mac-move-to-libexec)/trunk/www/
@@ -551,13 +551,13 @@ end match
 # base in r22198, and had its content moved into a base subfolder in r23202 to
 # match the other branches. We'll hide this.
 match /branches/(release_1_4)/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 	max revision 23201
 end match
 match /branches/(release_1_4)/
-	repository macports/base
+	repository macports-base
 	branch \1
 	max revision 23201
 end match
@@ -567,13 +567,13 @@ match /branches/(release_1_4)/
 	max revision 23202
 end match
 match /branches/(release_1_4)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 	min revision 23203
 end match
 match /branches/(release_1_4)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 	min revision 23203
 end match
@@ -599,35 +599,35 @@ end match
 #  - wbb4_versionfoobage_base
 # all have nothing but a base folder
 match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 end match
 match /branches/(dp2mp-move|dp_light-olegb|gsoc08-privileges|gsoc09-logging|gsoc11-post-destroot|gsoc15-dependency|images-and-archives|jberry-dropprivs|jberry-preview13|landonf-1_0|portgroups-selector|release_[^/]+|rshaw-archivemode|ssen-platform-[12]|universal-sanity|vcs-fetch|wbb4-versionfoobage-1|wbb4_versionfoobage_base)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 end match
 # Handle branches/release1 different to rename it to release_1, which matches the other release branches
 match /branches/release1/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch release_1_0
 	prefix jobs/
 end match
 match /branches/release1/base/
-	repository macports/base
+	repository macports-base
 	branch release_1_0
 end match
 
 # xterm-titles only branches base, but was branched twice; ignore the first
 # deleted branch
 match /branches/(xterm-titles)/base/portmgr/jobs/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch \1
 	prefix jobs/
 	min revision 66301
 end match
 match /branches/(xterm-titles)/base/
-	repository macports/base
+	repository macports-base
 	branch \1
 	min revision 66301
 	# See https://trac.macports.org/changeset/66299 and https://trac.macports.org/changeset/66300
@@ -649,35 +649,35 @@ end match
 # Most of contrib/ stays as it is. Only Pallet-related code will move to
 # a separate repository for easier branch tracking across the GSoC branches
 match /contrib/(MacPorts_Framework|Pallet)/
-	repository macports/pallet
+	repository pallet
 	branch master
 	prefix \1/
 end match
 
 match /contrib/mpab/
-	repository macports/mp-buildbot
+	repository mpbb
 	branch mpab
 end match
 
 match /contrib/mp-buildbot/
-	repository macports/mp-buildbot
+	repository mpbb
 	branch master
 end match
 
 match /contrib/buildbot/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch buildbot-mpab
 	prefix buildbot/
 end match
 
 match /contrib/buildbot-test/
-	repository macports/infrastructure
+	repository macports-infrastructure
 	branch master
 	prefix buildbot/
 end match
 
 match /contrib/
-	repository macports/contrib
+	repository macports-contrib
 	branch master
 end match
 
@@ -705,7 +705,7 @@ end match
 
 # Split user folders into separate repos
 match /users/([^/]+)/
-	repository macports/users/\1
+	repository macports-user-\1
 	branch master
 end match
 
@@ -718,13 +718,13 @@ end match
 #########################
 match /distfiles/
 	## drop distfiles
-	#repository macports/distfiles
+	#repository macports-distfiles
 	#branch master
 end match
 
 match /downloads/
 	## drop downloads
-	#repository macports/downloads
+	#repository macports-downloads
 	#branch master
 end match
 
@@ -755,7 +755,7 @@ end match
 # folder, but was a copy of base. See r22198, which copied it, and r23202,
 # which created the base subfolder.
 match /tags/(release_1_4_0-rc[12])/
-	repository macports/base
+	repository macports-base
 	branch refs/tags/\1
 	annotated true
 end match
@@ -767,27 +767,27 @@ match /tags/release_1_4_0/
 	max revision 23202
 end match
 match /tags/([^/]+)/base/
-	repository macports/base
+	repository macports-base
 	branch refs/tags/\1
 	annotated true
 end match
 match /tags/([^/]+)/doc/
-	repository macports/guide
+	repository macports-guide
 	branch refs/tags/doc-old-\1
 	annotated true
 end match
 match /tags/([^/]+)/doc-new/
-	repository macports/guide
+	repository macports-guide
 	branch refs/tags/\1
 	annotated true
 end match
 match /tags/([^/]+)/dports/
-	repository macports/ports
+	repository macports-ports
 	branch refs/tags/\1
 	annotated true
 end match
 match /tags/([^/]+)/www/
-	repository macports/www
+	repository macports-www
 	branch refs/tags/\1
 	annotated true
 end match
