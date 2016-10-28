@@ -173,7 +173,7 @@ end match
 # Remove automatically committed PortIndex and PortIndex.quick files
 match /trunk/dports/(PortIndex|PortIndex.quick)
 end match
-# Remove accidentially committed files
+# Remove accidentally committed files
 match /trunk/(lang|multimedia|sysutils|test)/
 	# https://trac.macports.org/changeset/150876
 	# https://trac.macports.org/changeset/145755
@@ -201,13 +201,13 @@ end match
 match /branches/APPLE/
 end match
 match /branches/foo/
-	# Accidentially created
+	# Accidentally created
 end match
 match /branches/fooo/
-	# Accidentially created, see https://trac-test.macports.org/changeset/23636
+	# Accidentally created, see https://trac-test.macports.org/changeset/23636
 end match
 match /branches/gsoc-11-rev-upgrade/
-	# Accidentially created, note the incorrect naming scheme for GSoC branches
+	# Accidentally created, note the incorrect naming scheme for GSoC branches
 end match
 match /branches/gsoc11-rev-upgrade/
 	# Merged & deleted
