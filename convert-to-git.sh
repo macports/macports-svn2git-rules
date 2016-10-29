@@ -85,7 +85,10 @@ echo "$max_rev" > "lastrev"
 
 # Compress output repositories
 if [ $resume_from -eq 1 ]; then
-	for repo in "$outdir/macports/"*; do
+	for repo in "$outdir/"*; do
+		if [ ! -d "$repo" ]; then
+			continue
+		fi
 		printf "Compressing repository in %s\n" "$repo"
 		du -sh "$repo"
 		git -C "$repo" gc --aggressive --prune=all
