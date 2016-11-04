@@ -68,7 +68,7 @@ while read entry; do
     # Skip -archive tags
     # These are supposed to point at the same object as the non-archive tag and
     # generally do, except for those converted from CVS.
-    if [[ $newtag == *-archive ]]; then
+    if [[ $newtag == *-archive* ]]; then
         continue
     fi
 
