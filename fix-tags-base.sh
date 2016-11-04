@@ -106,9 +106,9 @@ while read entry; do
     fi
 
     message=<<-EOF
-        $svnlog
-
-        $SVNREPO/tags/$tag
+	$svnlog
+	
+	$SVNREPO/tags/$tag
 	EOF
 
     echo "$newtag -> $gitrev:"
