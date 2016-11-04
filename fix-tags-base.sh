@@ -80,25 +80,24 @@ while read entry; do
     svnrev="$(svn info --show-item last-changed-revision $svntagurl | sed -E 's/ *$//')"
     svnlog=""
 
-    # Fix old CVS tags, they have a dummy commit by nobody on top we can drop
-    if [ "$gitauthoremail" = "<nobody@localhost>" ]; then
-        gitrev="$(git rev-parse $(git rev-parse refs/tags/$tag)^)"
-        svnrev="$(git log -1 $gitrev |grep "git-svn-id: " |sed -E 's/^.*@([0-9]*).*$/\1/')"
-        svnlog="Create tag '$tag'"
-    fi
+    ## Fix old CVS tags, they have a dummy commit by nobody on top we can drop
+    #if [ "$gitauthoremail" = "<nobody@localhost>" ]; then
+    #    gitrev="$(git rev-parse $(git rev-parse refs/tags/$tag)^)"
+    #    # do not update svnrev, so the git-svn-id link will still point to it
+    #    #svnrev="$(git log -1 $gitrev |grep "git-svn-id: " |sed -E 's/^.*@([0-9]*).*$/\1/')"
+    #    svnlog="Create tag '$tag'"
+    #fi
 
-    # Fix release_1_2-bp
+    # Fix release_1_2-bp, for some reason this commit was dropped by svn2git
     if [ "$tag" == "release_1_2-bp" ]; then
         gitrev="34f20a9ba36a804eb1d949baba4eeeb1ab559964"
-        svnrev="15089"
-        svnlog="Create tag '$tag'"
+        svnrev="15090"
     fi
 
-    # Fix release_1_3-bp
+    # Fix release_1_3-bp, for some reason this commit was dropped by svn2git
     if [ "$tag" == "release_1_3-bp" ]; then
         gitrev="929e51574ca2750ccfe5727a57e662f2e3a68850"
-        svnrev="18749"
-        svnlog="Create tag '$tag'"
+        svnrev="18750"
     fi
 
     # Fix release_1_6_0 that was updated and reverted
