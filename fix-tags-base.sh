@@ -75,12 +75,15 @@ while read entry; do
     svntagurl="$SVNREPO/tags/$tag"
     svnurl="$svntagurl"
     svnrev=$(svn info --show-item last-changed-revision $svntagurl)
+    nosvnlog=0
 
-    # Fix old CVS tags, they have a dummy commit by nobody on top
+    # Fix old CVS tags, they have a dummy commit by nobody on top we can drop
     if [ "$gitauthoremail" = "<nobody@localhost>" ]; then
         gitrev="$(git rev-parse $(git rev-parse refs/tags/$tag)^)"
         svnrev="$(git log -1 $gitrev |grep "git-svn-id: " |sed -E 's/^.*@([0-9]*).*$/\1/')"
         svnurl="$SVNREPO"
+        svnlog=""
+        nosvnlog=1
     fi
 
     # Fix release_1_6_0 that was updated and reverted
@@ -97,10 +100,13 @@ while read entry; do
     svnmappedauthor="$(map-author $svnauthor)"
     svnmappedauthorname="$(sed -E 's/^(.*) <(.*)>$/\1/' <<< "$svnmappedauthor")"
     svnmappedauthoremail="$(sed -E 's/^(.*) <(.*)>$/\2/' <<< "$svnmappedauthor")"
+    svndate="$(svn info --show-item last-changed-date $svnurl -r$svnrev)"
+    if [ $nosvnlog -eq 0 ]; then
+        svnlog="$(svn log $svnurl -r$svnrev |tail -n+4 |tail -r |tail -n+2 |tail -r)"
+    fi
 
-    version=${newtag#v}
     message=<<-EOF
-	Release $version
+        $svnlog
 
         $SVNREPO/tags/$tag
 	EOF
