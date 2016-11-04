@@ -9,7 +9,8 @@ set -e
 
 BASEURL=https://github.com/macports/macports-base.git
 BASEDIR=github/macports-base.git
-SVNREPO=file://$PWD/repo
+SVNREPO="https://svn.macports.org/repository/macports"
+SVNREPOLOCAL="file://$PWD/repo"
 AUTHORMAP=$PWD/gitconversion.authors
 
 ### helper functions
@@ -59,6 +60,8 @@ fi
 
 cd $BASEDIR
 
+svnrepouuid="$(svn info --show-item repos-uuid $SVNREPOLOCAL)"
+
 git for-each-ref --shell --sort='refname' \
     --format="tag=%(refname:strip=2) gitauthorname=%(authorname) gitauthoremail=%(authoremail) gitdate=%(authordate) gitrev=%(objectname)" 'refs/tags/release_*' | \
 while read entry; do
@@ -72,18 +75,30 @@ while read entry; do
         continue
     fi
 
-    svntagurl="$SVNREPO/tags/$tag"
-    svnurl="$svntagurl"
-    svnrev=$(svn info --show-item last-changed-revision $svntagurl)
-    nosvnlog=0
+    svnurl="$SVNREPOLOCAL"
+    svntagurl="$SVNREPOLOCAL/tags/$tag"
+    svnrev="$(svn info --show-item last-changed-revision $svntagurl | sed -E 's/ *$//')"
+    svnlog=""
 
     # Fix old CVS tags, they have a dummy commit by nobody on top we can drop
     if [ "$gitauthoremail" = "<nobody@localhost>" ]; then
         gitrev="$(git rev-parse $(git rev-parse refs/tags/$tag)^)"
         svnrev="$(git log -1 $gitrev |grep "git-svn-id: " |sed -E 's/^.*@([0-9]*).*$/\1/')"
-        svnurl="$SVNREPO"
-        svnlog=""
-        nosvnlog=1
+        svnlog="Create tag '$tag'"
+    fi
+
+    # Fix release_1_2-bp
+    if [ "$tag" == "release_1_2-bp" ]; then
+        gitrev="34f20a9ba36a804eb1d949baba4eeeb1ab559964"
+        svnrev="15089"
+        svnlog="Create tag '$tag'"
+    fi
+
+    # Fix release_1_3-bp
+    if [ "$tag" == "release_1_3-bp" ]; then
+        gitrev="929e51574ca2750ccfe5727a57e662f2e3a68850"
+        svnrev="18749"
+        svnlog="Create tag '$tag'"
     fi
 
     # Fix release_1_6_0 that was updated and reverted
@@ -92,7 +107,6 @@ while read entry; do
     if [ "$tag" == "release_1_6_0" ]; then
         gitrev="1e1f0faa0a35f8dc992174edad3a077cd2481938"
         svnrev="32094"
-        svnurl="$SVNREPO"
     fi
 
     svndate="$(svn info --show-item last-changed-date $svnurl -r$svnrev)"
@@ -101,17 +115,16 @@ while read entry; do
     svnmappedauthorname="$(sed -E 's/^(.*) <(.*)>$/\1/' <<< "$svnmappedauthor")"
     svnmappedauthoremail="$(sed -E 's/^(.*) <(.*)>$/\2/' <<< "$svnmappedauthor")"
     svndate="$(svn info --show-item last-changed-date $svnurl -r$svnrev)"
-    if [ $nosvnlog -eq 0 ]; then
+    if [ -z "$svnlog" ]; then
         svnlog="$(svn log $svnurl -r$svnrev |tail -n+4 |tail -r |tail -n+2 |tail -r)"
     fi
 
-    message=<<-EOF
-	$svnlog
-	
-	$SVNREPO/tags/$tag
-	EOF
+    message="${svnlog}
+
+git-svn-id: ${SVNREPO}/tags/${tag}@${svnrev} ${svnrepouuid}"
 
     echo "$newtag -> $gitrev:"
+    echo "$message"
 
     env GIT_COMMITTER_NAME="$svnmappedauthorname" \
         GIT_COMMITTER_EMAIL="$svnmappedauthoremail" \
@@ -120,4 +133,6 @@ while read entry; do
         GIT_AUTHOR_EMAIL="$svnmappedauthoremail" \
         GIT_AUTHOR_DATE="$svndate" \
         git tag -f -a -m "$message" "$newtag" "$gitrev"
+
+    echo '--'
 done
